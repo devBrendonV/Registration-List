@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import { StyleTodoForm } from "./styles";
+import { StyleTodoForm } from "../styles";
 const TodoForm = (param) => {
   const props = param.fun;
   const estado = param.estado;

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import { StyleCard } from "./styles";
-import { StyleCadastrados } from "./styles";
+import { StyleCard } from "../styles";
+import { StyleCadastrados } from "../styles";
 const Cadastrados = (props) => {
   const [tipo, setTipo] = useState("nome");
   function enviar(param) {
