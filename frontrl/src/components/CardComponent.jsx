@@ -8,10 +8,17 @@ const CardComponent = (param) => {
   const [email, setEmail] = useState();
   const [idade, setIdade] = useState();
   const [descricao, setDescricao] = useState();
+  const [alteracao, setAlteracao] = useState(false)
   useEffect(() => {
     setEmail("");
     setIdade("");
     setDescricao("");
+    setTimeout(() => {
+      setAlteracao(true)
+      setTimeout(() => {
+        setAlteracao(false)
+      }, 2000);
+    }, 1000);
   }, [props.alterando]);
   return (
     <div className="card" key={props._id}>
@@ -105,7 +112,11 @@ const CardComponent = (param) => {
               }
             >
               {props.alterando ? "Alterando...." : "Alterar"}
+              
             </Button>
+            <div hidden={!alteracao} className='alteracao'>
+                Alteração realizada!!
+              </div>
           </div>
         </div>
       </Card>

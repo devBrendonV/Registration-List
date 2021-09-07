@@ -107,6 +107,12 @@ export const StyleCard = styled.div`
   .alterar p{
     text-align: center;
   }
+  .card .alteracao{
+    margin-top: 5px;
+    background-color: green;
+    padding: 3px;
+    text-align: center;
+  }
 `;
 
 export const StyleTodoForm = styled.div`
