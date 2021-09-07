@@ -14,6 +14,11 @@ const CardComponent = (param) => {
     setDescricao("");
   }, [props.alterar]);
 
+  function liberarbotao(){
+    if(email != "" || idade != '' || descricao != '')
+    return true
+  }
+ 
   return (
     <div className="card" key={props._id}>
       <Card
@@ -95,7 +100,7 @@ const CardComponent = (param) => {
             <Button
               variant="info"
               className={!props.alterar ? "salvar" : "alterando"}
-              disabled={props.alterar}
+              disabled={props.alterar || !liberarbotao()}
               onClick={() =>
                 func.alterarDados(
                   props._id,
@@ -107,10 +112,10 @@ const CardComponent = (param) => {
             >
               {props.alterar ? "Alterando...." : "Alterar"}
             </Button>
-
             <div hidden={!props.mensagem} className="alteracao">
-              Alteração realizada!!
+             Alteração realizada!!!
             </div>
+
           </div>
         </div>
       </Card>
