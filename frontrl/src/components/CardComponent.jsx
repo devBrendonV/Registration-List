@@ -8,18 +8,12 @@ const CardComponent = (param) => {
   const [email, setEmail] = useState();
   const [idade, setIdade] = useState();
   const [descricao, setDescricao] = useState();
-  const [alteracao, setAlteracao] = useState(false)
   useEffect(() => {
     setEmail("");
     setIdade("");
     setDescricao("");
-    setTimeout(() => {
-      setAlteracao(true)
-      setTimeout(() => {
-        setAlteracao(false)
-      }, 2000);
-    }, 1000);
-  }, [props.alterando]);
+  }, [props.alterar]);
+
   return (
     <div className="card" key={props._id}>
       <Card
@@ -86,7 +80,7 @@ const CardComponent = (param) => {
               <label htmlFor="idade"> Idade:</label>
               <input
                 placeholder={props.idade}
-                type="text"
+                type="number"
                 onChange={(e) => setIdade(e.target.value)}
               />
             </div>
@@ -100,8 +94,8 @@ const CardComponent = (param) => {
             </div>
             <Button
               variant="info"
-              className={!props.alterando ? "salvar" : "alterando"}
-              disabled={props.alterando}
+              className={!props.alterar ? "salvar" : "alterando"}
+              disabled={props.alterar}
               onClick={() =>
                 func.alterarDados(
                   props._id,
@@ -111,12 +105,12 @@ const CardComponent = (param) => {
                 )
               }
             >
-              {props.alterando ? "Alterando...." : "Alterar"}
-              
+              {props.alterar ? "Alterando...." : "Alterar"}
             </Button>
-            <div hidden={!alteracao} className='alteracao'>
-                Alteração realizada!!
-              </div>
+
+            <div hidden={!props.mensagem} className="alteracao">
+              Alteração realizada!!
+            </div>
           </div>
         </div>
       </Card>

@@ -5,6 +5,8 @@ const todoSchema = new mongoose.Schema({
     nome:{type:String,required:true},
     email:{type:String,required:true},
     idade:{type:Number,required:true},
+    alterar:{type:Boolean,default:false},
+    mensagem:{type:Boolean,default:false},
     description:{type: String,required:true},
     edit:{type:Boolean,default:false},
     done: {type: Boolean,required:true,default:false},

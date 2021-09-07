@@ -4,7 +4,7 @@ import TodoForm from "./TodoForm";
 import Cadastrados from "./Cadastrados";
 import axios from "axios";
 import CardComponent from "./CardComponent";
-const URL = "http://localhost:3050/api/list";
+const URL = "http://localhost:3090/api/list";
 
 const Content = () => {
   const [data, setData] = useState([]);
@@ -37,8 +37,9 @@ const Content = () => {
             idade: props.idade,
             description: props.description,
             done: props.done,
+            alterar: props.alterar,
+            mensagem: props.mensagem,
             edit: props.edit,
-            alterando: alterando,
           }}
           fun={{
             concluido: concluido,
@@ -73,20 +74,32 @@ const Content = () => {
     puxardados(texto);
   }
   function alterarDados(param, novoemail, novaidade, novadescricao) {
-    setAlterando(true);
+    setAlterando(false);
     axios
       .put(`${URL}/${param}`, {
         email: novoemail,
         idade: novaidade,
         description: novadescricao.toUpperCase(),
+        alterar: true,
       })
-      .then(() =>
+      .then(() => {
+        puxardados(texto);
         setTimeout(() => {
-          setAlterando(false);
-        }, 2000)
-      );
+          alterarfalse(param);
+        }, 2000);
+      });
   }
-
+  function alterarfalse(param) {
+    axios.put(`${URL}/${param}`, { alterar: false, mensagem: true });
+    puxardados(texto);
+    setTimeout(() => {
+      alterarmensagem(param);
+    }, 1000);
+  }
+  function alterarmensagem(param) {
+    axios.put(`${URL}/${param}`, { mensagem: false });
+    puxardados(texto);
+  }
   function cadastrar() {
     setCarregando(true);
     axios
